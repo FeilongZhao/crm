@@ -33,6 +33,7 @@ public class ListCustomerServlet extends HttpServlet {
 	    
 	    if (cust_name != null && !"".equals(cust_name)) {
             dc.add(Restrictions.like("cust_name", "%" + cust_name + "%"));
+            System.out.println(cust_name);
         }
 	    
 	    List<Customer>list = customer.getAll(dc);
