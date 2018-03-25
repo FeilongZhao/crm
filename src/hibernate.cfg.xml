@@ -32,10 +32,12 @@
 		<property name="hibernate.format_sql">true</property>
 		
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<!-- 引入orm元数据
-			路径书写: 填写src下的路径
-		 -->
+		 <property name="hibernate.connection.isolation">4</property>
+         <property name="hibernate.current_session_context_class">thread</property>
+         
+         
 		<mapping resource="com/lcu/domain/Customer.hbm.xml" />
 		<mapping resource="com/lcu/domain/LinkMan.hbm.xml" />
+		<mapping resource="com/lcu/domain/User.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

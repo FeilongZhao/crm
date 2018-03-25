@@ -6,10 +6,38 @@
 
 
 	<package name="crm" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="com.lcu.web.interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor">
+					<param name="excludeMethods">login</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="loginStack"></default-interceptor-ref>
+		<global-results>
+		<result name="toLogin" type="">/login.jsp</result>
+		</global-results>
 
-		<action name="CustomerAction_*" class="com.lcu.web.action.CustomerAction" method="{1}">
-
+		<global-exception-mappings>
+			<exception-mapping result="error"
+				exception="java.lang.RuntimeException"></exception-mapping>
+		</global-exception-mappings>
+		<action name="CustomerAction_*" class="com.lcu.web.action.CustomerAction"
+			method="{1}">
 			<result name="list" type="dispatcher">/jsp/customer/list.jsp</result>
+			<result name="toList" type="redirectAction">
+				<param name="actionName">CustomerAction_list</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="UserAction_*" class="com.lcu.web.action.UserAction"
+			method="{1}">
+			<result name="toHome" type="dispatcher">/index.htm</result>
+			<result name="error">/login.jsp</result>
 		</action>
 	</package>
 </struts>
