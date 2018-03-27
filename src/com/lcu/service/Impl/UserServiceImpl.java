@@ -8,7 +8,7 @@ import com.lcu.utils.HibernateUtil;
 
 public class UserServiceImpl implements UserService {
 
-    private UserDao ud = new UserDaoImpl();
+    private UserDao ud;
 
     public User login(User user) {
         
@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService {
         return existU;
     }
 
+    public void setUd(UserDao ud) {
+        this.ud = ud;
+    }
+
+    
 }

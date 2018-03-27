@@ -11,8 +11,9 @@ import com.lcu.service.CustomerService;
 
 public class CustomerServiceImpl implements CustomerService {
 
-    private CustomerDao customerDao = new CustomerDaoImpl();
+    private CustomerDao customerDao;
 
+   
     public void add(Customer customer) {
        
         customerDao.save(customer);
@@ -30,5 +31,10 @@ public class CustomerServiceImpl implements CustomerService {
         List<Customer>list =  customerDao.getAll(dc);
         return list;
     }
+    
+    public void setCustomerDao(CustomerDao customerDao) {
+        this.customerDao = customerDao;
+    }
+
 
 }

@@ -11,8 +11,8 @@ import com.lcu.service.LinkManService;
 
 public class LinkManServiceImpl implements LinkManService {
 
-    private CustomerDao customerDao = new CustomerDaoImpl();
-    private LinkManDao lmd = new LinkManDaoImpl();
+    private CustomerDao customerDao;
+    private LinkManDao lmd;
     public void save(LinkMan lm) {
        Integer cust_id = lm.getCust_id();
        Customer customer = customerDao.getById(cust_id);
@@ -20,5 +20,12 @@ public class LinkManServiceImpl implements LinkManService {
        lm.setCustomer(customer);
        lmd.save(lm);
     }
+    public void setCustomerDao(CustomerDao customerDao) {
+        this.customerDao = customerDao;
+    }
+    public void setLmd(LinkManDao lmd) {
+        this.lmd = lmd;
+    }
 
+    
 }
